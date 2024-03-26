@@ -1,6 +1,7 @@
 # 2001_The_Game
 
 Rules:
+
 Each player starts with a score of 0 points.
 On their turn, a player rolls 2 dice (standard six-sided dice).
 The number rolled is added to the player's total score.

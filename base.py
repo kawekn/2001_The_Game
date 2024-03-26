@@ -7,7 +7,7 @@ def wait_for_enter():
 
 
 def roll_dices():
-    return sum([random.randint(1,6), random.randint(1, 6)])
+    return sum([random.randint(1, 6), random.randint(1, 6)])
 
 
 def score_after_1st_round(score):

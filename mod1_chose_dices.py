@@ -18,7 +18,7 @@ def valid_dices(chosen_dice):
             return chosen_dice[1:]
 
 
-def chose_dices(dices_amount, player=0):
+def chose_dices(dices_amount, player):
     dices = []
     for dice_nr in range(1, dices_amount + 1):
         if player == 0:
@@ -45,13 +45,14 @@ def roll_dices(dices_amount, player, result=0,):
     return result
 
 
-def score_after_1st_round(score, dices_amount, player):
-    if roll_dices(dices_amount, player, score) == 7:
+def score_after_1st_round(dices_amount, player, score):
+    result = roll_dices(dices_amount, player)
+    if result == 7:
         score //= 7
-    elif roll_dices(dices_amount, player, score) == 11:
+    elif result == 11:
         score *= 11
     else:
-        score += roll_dices(dices_amount, player,score)
+        score += result
     return score
 
 
@@ -64,9 +65,9 @@ def rules_implementation(player_score=0, pc_score=0):
         if player_score == 0 and pc_score == 0:
             player_score = roll_dices(2, 1)
             pc_score = roll_dices(2, 0)
-        elif player_score <= 2001 and pc_score <= 2001:
-            player_score = roll_dices(2, 1, player_score)
-            pc_score = roll_dices(2, 0,pc_score)
+        elif player_score < 2001 and pc_score < 2001:
+            player_score = score_after_1st_round(2, 1, player_score)
+            pc_score = score_after_1st_round(2, 0, pc_score)
         else:
             if player_score >= 2001:
                 return f"The winner is player! Score: {player_score}"
